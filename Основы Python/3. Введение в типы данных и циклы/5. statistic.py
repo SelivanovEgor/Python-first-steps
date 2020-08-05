@@ -6,4 +6,5 @@ for canal in stats:
         max_stats.append(canal)
 print("Каналы с максимальным объемом:")
 for i in max_stats:
+    
     print(i, end=" ")
