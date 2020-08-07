@@ -1,5 +1,5 @@
 class Animals:
-    def __init__(self, name, weight):
+    def __init__(self, name: str = '', weight: float = 0.0):
         self.animal = ""
         self.name = name
         self.weight = weight
@@ -14,9 +14,12 @@ class Animals:
     def printer(self):
         print(self.animal, self.name, 'весом ' + str(self.weight) + ' кг.', 'говорит ' + str(self.voice))
 
+    def action(self):
+        pass
+
 
 class Cow(Animals):
-    def __init__(self, name, weight):
+    def __init__(self, name: str = '', weight: float = 0.0):
         super().__init__(name, weight)
         self.animal = "Корова"
         self.voice = "му-му"
@@ -26,6 +29,9 @@ class Cow(Animals):
         Процесс дойки
         """
         return "%s %s подоена." % (self.animal, self.name)
+
+    def action(self):
+        print(self.doika())
 
 
 class Goose(Animals):
@@ -40,6 +46,9 @@ class Goose(Animals):
         """
         return "%s %s дал яйца." % (self.animal, self.name)
 
+    def action(self):
+        print(self.eggs())
+
 
 class Chicken(Animals):
     def __init__(self, name, weight):
@@ -52,6 +61,9 @@ class Chicken(Animals):
         Процесс сборки яиц
         """
         return "%s %s дала яйца." % (self.animal, self.name)
+
+    def action(self):
+        print(self.eggs())
 
 
 class Sheep(Animals):
@@ -66,6 +78,9 @@ class Sheep(Animals):
         """
         return "%s %s была пострижена." % (self.animal, self.name)
 
+    def action(self):
+        print(self.postrich())
+
 
 class Goat(Animals):
     def __init__(self, name, weight):
@@ -78,6 +93,9 @@ class Goat(Animals):
         Процесс дойки
         """
         return "%s %s подоена." % (self.animal, self.name)
+
+    def action(self):
+        print(self.doika())
 
 
 class Duck(Animals):
@@ -92,8 +110,11 @@ class Duck(Animals):
         """
         return "%s %s дала яйца." % (self.animal, self.name)
 
+    def action(self):
+        print(self.eggs())
 
-#initialization
+
+# initialization
 animals = []
 goose1 = Goose("Джон", 3)
 animals.append(goose1)
@@ -122,18 +143,7 @@ name = ''
 for animal in animals:
     animal.printer()
     print(animal.korm())
-    if str(type(animal)) == "<class '__main__.Goose'>":
-        print(animal.eggs())
-    elif str(type(animal)) == "<class '__main__.Cow'>":
-        print(animal.doika())
-    elif str(type(animal)) == "<class '__main__.Sheep'>":
-        print(animal.postrich())
-    elif str(type(animal)) == "<class '__main__.Chicken'>":
-        print(animal.eggs())
-    elif str(type(animal)) == "<class '__main__.Goat'>":
-        print(animal.doika())
-    elif str(type(animal)) == "<class '__main__.Duck'>":
-        print(animal.eggs())
+    animal.action()
     summa += animal.weight
     if animal.weight >= maximum:
         maximum = animal.weight
@@ -141,4 +151,3 @@ for animal in animals:
 
 print("Общий вес всех животных:", summa)
 print("Самое тяжелое животное:", name, 'весом', maximum, 'кг.')
-
